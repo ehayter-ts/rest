@@ -54,7 +54,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Task"
+                "$ref": "#/definitions/TaskArray"
               }
             }
           },
@@ -213,6 +213,12 @@
         "AdditionalJQL": {
           "type": "string"
         }
+      }
+    },
+    "TaskArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Task"
       }
     }
   },
