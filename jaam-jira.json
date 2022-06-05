@@ -249,6 +249,88 @@
           "application/json"
         ]
       }
+    },
+    "/projects/worklogs": {
+      "get": {
+        "operationId": "getProjectTasks",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jql",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The result of the flow",
+            "schema": {
+              "$ref": "#/definitions/WorklogData"
+            }
+          },
+          "400": {
+            "description": "Request error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "statusCode": {
+                  "type": "integer"
+                },
+                "errorMessage": {
+                  "type": "string"
+                },
+                "invalid": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not Authorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "statusCode": {
+                  "type": "integer"
+                },
+                "errorMessage": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "statusCode": {
+                  "type": "integer"
+                },
+                "errorMessage": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",
@@ -324,6 +406,91 @@
         },
         "remainingHours": {
           "type": "number"
+        }
+      }
+    },
+    "Issue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "rate": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "progress": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "assignee": {
+          "type": "string"
+        },
+        "isParent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Worklog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "issueId": {
+          "type": "integer"
+        },
+        "timeSpent": {
+          "type": "integer"
+        },
+        "started": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "author": {
+          "type": "string"
+        },
+        "rate": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "WorklogData": {
+      "type": "object",
+      "properties": {
+        "issues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Issue"
+          }
+        },
+        "worklogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Worklog"
+          }
+        },
+        "timeSpent": {
+          "type": "integer"
+        },
+        "timeSpentSC": {
+          "type": "integer"
+        },
+        "timeSpentEM": {
+          "type": "integer"
+        },
+        "timeSpentQA": {
+          "type": "integer"
         }
       }
     }
