@@ -157,6 +157,98 @@
           "application/json"
         ]
       }
+    },
+    "/reports/burndown": {
+      "get": {
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jql",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "hours",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The result of the flow",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BurndownReportData"
+              }
+            }
+          },
+          "400": {
+            "description": "Request error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "statusCode": {
+                  "type": "integer"
+                },
+                "errorMessage": {
+                  "type": "string"
+                },
+                "invalid": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not Authorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "statusCode": {
+                  "type": "integer"
+                },
+                "errorMessage": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "statusCode": {
+                  "type": "integer"
+                },
+                "errorMessage": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
     }
   },
   "swagger": "2.0",
@@ -219,6 +311,20 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/Task"
+      }
+    },
+    "BurndownReportData": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "sum": {
+          "type": "number"
+        },
+        "remainingHours": {
+          "type": "number"
+        }
       }
     }
   },
