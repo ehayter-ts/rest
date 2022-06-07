@@ -448,7 +448,7 @@
           "type": "integer"
         },
         "timeSpent": {
-          "type": "integer"
+          "type": "number"
         },
         "started": {
           "type": "string",
@@ -481,16 +481,16 @@
           }
         },
         "timeSpent": {
-          "type": "integer"
+          "type": "number"
         },
         "timeSpentSC": {
-          "type": "integer"
+          "type": "number"
         },
         "timeSpentEM": {
-          "type": "integer"
+          "type": "number"
         },
         "timeSpentQA": {
-          "type": "integer"
+          "type": "number"
         }
       }
     }
