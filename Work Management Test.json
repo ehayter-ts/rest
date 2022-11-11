@@ -1,0 +1,128 @@
+{
+  "info": {
+    "title": "Work Management",
+    "description": "Work Management API",
+    "version": "0.1"
+  },
+  "tags": [
+    {
+      "name": "Service Info",
+      "description": "Base service info"
+    }
+  ],
+  "paths": {
+    "/workitem/{id}/documents": {
+      "get": {
+        "summary": "Gets a list of workitem documents",
+        "operationId": "getWorkitemDocuments",
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The results fo the query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/document"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "/documents/{id}": {
+      "get": {
+        "summary": "Gets a document by id",
+        "operationId": "getDocumentById",
+        "description": "Gets a document by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The results fo the lookup",
+            "schema": {
+              "$ref": "#/definitions/document"
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "host": "rest.synatic.com",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/daisycommunicationsdev/work-management",
+  "definitions": {
+    "document": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "WorkitemId": {
+          "type": "string"
+        },
+        "DocumentTypeId": {
+          "type": "integer"
+        },
+        "DocumentNumber": {
+          "type": "integer"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Document": {
+          "type": "string"
+        },
+        "DocumentLink": {
+          "type": "string"
+        },
+        "StatusId": {
+          "type": "string"
+        },
+        "UploadDate": {
+          "type": "string"
+        },
+        "ReceivedDate": {
+          "type": "string"
+        },
+        "DefaultPage": {
+          "type": "string"
+        },
+        "DocumentValue": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Work Management Security Scheme": {
+      "type": "apiKey",
+      "name": "x-api-key",
+      "in": "header"
+    }
+  }
+}
